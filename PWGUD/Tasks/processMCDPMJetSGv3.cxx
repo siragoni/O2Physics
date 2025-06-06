@@ -22,8 +22,8 @@
 #include "PWGUD/DataModel/UDTables.h"
 // #include "TLorentzVector.h"
 // #include "TVector3.h"
-#include "Math/LorentzVector.h"           // ROOT::Math::LorentzVector
-#include "Math/PxPyPzM4D.h"               // ROOT::Math::PxPyPzM4D
+#include "Math/LorentzVector.h" // ROOT::Math::LorentzVector
+#include "Math/PxPyPzM4D.h"     // ROOT::Math::PxPyPzM4D
 #include "TMath.h"
 
 using namespace o2;
@@ -55,9 +55,6 @@ struct ProcessMCDPMJetSGv3 {
   // using TCs = soa::Join<aod::UDTracks, aod::UDTracksExtra, aod::UDTracksFlags, aod::UDTracksPID, aod::UDMcTrackLabels>;
   using TC = TCs::iterator;
   using LorentzVectorM = ROOT::Math::LorentzVector<ROOT::Math::PxPyPzM4D<double>>;
-
-
-
 
   double massPion = 0.;
   double massKaon = 0.;
@@ -178,11 +175,10 @@ struct ProcessMCDPMJetSGv3 {
       counterMC += 1;
       // if(mcParticle.isPhysicalPrimary()) counterMC += 1;
       LorentzVectorM protoMC(
-          mcParticle.px(),
-          mcParticle.py(),
-          mcParticle.pz(),
-          massPion
-      );
+        mcParticle.px(),
+        mcParticle.py(),
+        mcParticle.pz(),
+        massPion);
       double etaMax = 0.8;
       double ptMin = 0.1;
       if (std::fabs(protoMC.Eta()) < etaMax && protoMC.Pt() > ptMin) {
